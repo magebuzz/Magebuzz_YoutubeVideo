@@ -1,0 +1,52 @@
+/********Css For youtubevideo************/
+.youtubevideo-index-index{}
+.youtubevideo-index-index .main{}
+#videoPlayer{margin:0 auto 15px;}
+#homeVideoPlayer{background:#FFFFFF; border:1px solid #ccc; padding:10px; margin:0 0 10px;}
+#video-feed{float:left; width:100%; background:url(images/bg-sp.png) top center no-repeat; padding:15px 0 0; margin:15px 0 0;}
+#video-feed  h3.allvideo_tit{color:#222222; font-size:16px;float:left; width:100%; margin:0 0 10px; padding:0 0 5px 22px;border-bottom: 1px dotted #CCCCCC; text-transform:uppercase; background:url(images/i_video.png) top left no-repeat;}
+#video-feed .list-video{float:left; width:100%; margin:0 0 13px;}
+#video-feed .list-video li,#featured-video .list-video li{float:left; width:33%;}
+#video-feed .list-video li .video-thumbnail,#featured-video .list-video li .video-thumbnail {float:left;}
+#video-feed .list-video li .video-info,#featured-video .list-video li .video-info {}
+#video-feed .list-video li img.video-thumb,#featured-video .list-video li img.video-thumb {
+    border: 1px solid #E8FFBB;
+    display: inline !important;
+    margin: 0 !important;
+    padding: 1px !important;
+}
+#video-feed .list-video li .video-info .video-title a.active{text-decoration:none; color:#ec5a5a;}
+#video-feed .list-video li .video-info .video-title a,
+#featured-video .list-video li .video-info .video-title a{text-decoration:none; color:#222222; font-size:13px;}
+#video-feed .list-video li .video-info .video-title a:hover,
+#featured-video .list-video li .video-info .video-title a:hover{text-decoration:none; color:#ec5a5a;}
+#featured-video .list-video li .video-info .video-title a.active{text-decoration:none; color:#ec5a5a;}
+#featured-video{float:left; width:100%; padding:15px 0 0;}
+#featured-video .list-video{float:left; width:100%; padding:15px 0;}
+#featured-video h3.featuredvideo_tit{color:#ff7000;font-size:16px;float:left; width:100%; margin:0; padding:0 0 5px 22px;border-bottom: 1px dotted #CCCCCC; text-transform:uppercase; background:url(images/i_featured.png) top left no-repeat;}
+#featured-video h3.featuredvideo_tit span {
+    display: block;
+}
+.list-video-productpage li{max-width: 280px; float: left; margin: 15px 15px 15px 20px;}
+.col-right.sidebar li.item .video-thumbnail{
+    float: left;
+    padding-right: 10px;
+}
+.col-right.sidebar li.item .video-thumbnail img{
+    width: 120px;
+    height: 75px;
+}
+.col-right.sidebar li.item .video-info h5.video-title span{
+    color: black;
+}
+.col-right.sidebar li.item .video-info .viewcount.sidebar{
+    float: right;
+    margin-right: 51px;
+}
+.col-right.sidebar li.item{
+    padding-bottom: 20px !important;
+}
+.col-right.sidebar li.item .video-info h5 a:hover{
+    text-decoration:none;
+    color:#ec5a5a !important;
+}

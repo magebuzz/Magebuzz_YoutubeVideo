@@ -1,0 +1,51 @@
+<?php
+/*
+* Copyright (c) 2015 www.magebuzz.com 
+*/
+$thumbnailSize = Mage::helper('youtubevideo')->getConfigVideoThumbnailSize($videoThumbnailConfig);
+$videoApiKeyConfig = Mage::helper('youtubevideo')->getApiKey();
+?>
+<?php if (count($this->_getVideoSidebarCollection()) > 0): ?>
+    <div class="block block-related">
+        <div class="block-title">
+            <strong><span><?php echo $this->_getBlockTitle(); ?></span></strong>
+        </div>
+        <div class="block-content">
+            <ol id="block-related-youtube-video">
+                <?php foreach ($this->_getVideoSidebarCollection() as $_video): ?>
+                    <?php
+                    //not display if status of video is disabled
+                    $videoId = $_video['modelData']['snippet']['resourceId']['videoId'];
+                    $viewsa = Mage::helper('youtubevideo')->countview($videoId, $videoApiKeyConfig);
+                    ?>
+                    <?php if ($_video['modelData']['snippet']['resourceId']['videoId']): ?>
+                        <li class="item" style="padding-bottom:10px;">
+                            <div class="video-thumbnail">
+                                <a href="<?php echo $this->getUrl('video', array('video_id' => $_video['modelData']['snippet']['resourceId']['videoId'])) ?>"
+                                   target="_blank">
+                                    <div class="video-thumbnail">
+                                        <img class="video-thumb"
+                                             alt="<?php echo $_video['modelData']['snippet']['title'] ?>"
+                                             src="http://img.youtube.com/vi/<?php echo $_video['modelData']['snippet']['resourceId']['videoId'] ?>/0.jpg"
+                                             title="<?php echo $_video['modelData']['snippet']['title']; ?>"
+                                             width="175"/>
+                                    </div>
+                                    <div style="clear:both; padding-top:5px"></div>
+                                </a>
+                            </div>
+                            <div class="video-info" style="margin-left:<?php echo $thumbnailSize[0] + 10 ?>px">
+                                <h5 class="video-title"><a
+                                        href="<?php echo $this->getUrl('video', array('video_id' => $_video['modelData']['snippet']['resourceId']['videoId'])) ?>"
+                                        title="'<?php echo $_video['modelData']['snippet']['title'] ?>'"><span><?php echo $_video['modelData']['snippet']['title']; ?></span></a>
+                                </h5>
+                                <label
+                                    class="viewcount sidebar"><?php echo $this->__('Views: ') ?><?php echo $viewsa; ?></label>
+                            </div>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach ?>
+            </ol>
+            <script type="text/javascript">decorateList('block-related-youtube-video', 'none-recursive')</script>
+        </div>
+    </div>
+<?php endif ?>

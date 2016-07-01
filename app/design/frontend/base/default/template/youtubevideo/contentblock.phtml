@@ -1,0 +1,54 @@
+<?php
+/*
+* Copyright (c) 2015 www.magebuzz.com 
+*/
+?>
+
+<?php 
+
+$_columnCount = $this->getColumn();
+$_columnCount = empty($_columnCount) ? 3 : $_columnCount;
+$videos = $this->_getVideoCollection();
+$number_video = count($videos); 
+
+?>
+<?php if(count($videos)): ?>
+  <div class="block">
+  <div id="video-feed">
+  	<h3 class="allvideo_tit"><strong><span><?php echo $this->getBlockTitle(); ?></span></strong></h3>
+  	<?php $i=0 ;?>
+  	<?php foreach($videos as $_video):?>
+  	<?php if ($i%$_columnCount == 0): ?>
+  	<ul class="list-video">
+  	<?php endif ?>
+  		<?php //not display if status of video is disabled ?>
+      <?php if (Mage::getModel('youtubevideo/youtubevideo')->getStatusByVideoId($_video->getVideoId())): ?>
+  			<li>
+  				<?php
+  					$i++;	
+  					$videoTitle = $_video->getVideoTitle(); 
+  					$videoDuration = $_video->getVideoDuration();
+  					$videoDurationMins = floor($videoDuration / 60);
+  					$videoDurationSecs = $videoDuration % 60;
+  				?>
+  				<a href="<?php echo $_video->getVideoWatchPageUrl(); ?>" target="_blank">
+  					<div class="video-thumbnail">
+  						<img class="video-thumb" alt="<?php echo $videoTitle ?>" src="http://img.youtube.com/vi/<?php echo $_video->getVideoId() ?>/0.jpg" title="<?php echo $_video->getVideoTitle(); ?>" width="175"/>
+  					</div>
+  					<div class="video-info" style="width:175px">
+  						<h5 class="video-title"><span><?php echo $videoTitle; ?></span></a></h5>
+  						<label class="viewcount"><?php echo $this->__('Views: ')?><?php echo $_video->getVideoViewCount(); ?></label>
+  					</div>
+  				</a>
+  			</li>
+  		<?php endif; ?>
+  		<?php if ($i%$_columnCount==0 || $i==count($this->_getVideoCollection())): ?>
+  		</ul>
+  		<?php endif ?>
+  		<?php endforeach;?>
+  	</ul>
+  </div>
+</div>
+<?php endif ?>
+
+

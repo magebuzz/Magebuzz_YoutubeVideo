@@ -1,0 +1,18 @@
+<div class="entry-edit">
+  <form id="user_import_form" action="<?php echo $this->getUrl('*/*/videoUploadByUser')?>" method="post">
+    <p>Youtube channel example <span class="notice">http://www.youtube.com/user/<strong>demousername</strong></span> </p>
+    <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+    <fieldset id="import-videos">
+      <table cellspacing="5" class="form-list">
+        <tr>
+          <td class="label"><?=$this->__('User ID')?> <span class="required">*</span></td>
+          <td class="input-ele"><input class="input-text required-entry" name="user_id" /></td>
+          <td><button onclick="userImportForm.submit()" class="save" type="button"><span>Import from User</span></button></td>
+        </tr>
+      </table>
+    </fieldset>
+  </form>
+</div>
+<script type="text/javascript">
+  var userImportForm = new varienForm('user_import_form');
+</script>

@@ -1,0 +1,46 @@
+<?php
+/*
+* Copyright (c) 2015 www.magebuzz.com 
+*/
+?>
+<?php if(Mage::getStoreConfig('youtubevideo/display/show_on_product_page')):?>
+  <?php
+  	// $username = Mage::helper('youtubevideo')->getUserName();
+  	$videoCollection = $this->getVideoCollection();	
+  	$videoPlayerConfig = Mage::getStoreConfig('youtubevideo/display/video_player_size');
+  	$videoThumbnailConfig = Mage::getStoreConfig('youtubevideo/display/video_thumbnail_size');
+  	
+  	/* Return array config size */
+  	$videoPlayerSize = Mage::helper('youtubevideo')->getConfigVideoThumbnailSize($videoPlayerConfig);
+  	$thumbnailSize = Mage::helper('youtubevideo')->getConfigVideoThumbnailSize($videoThumbnailConfig);
+  	$main_video_id = $this->getRandomVideoIdToDisplay();
+  ?>
+  <?php if(count($videoCollection) > 0):?>	
+  	<div id="video-feed">
+  			<?php $i=0 ;?>
+  			<?php foreach($videoCollection as $_video):?>
+				<ul class="list-video-productpage">
+  			<?php 
+  				$videoId = $_video->getVideoId();
+  				$videoTitle = $_video->getVideoTitle(); 
+  				$videoDuration = $_video->getVideoDuration();   
+  				$viewCount = $_video->getVideoViewCount();   
+  			?>
+  			<li>
+  				<div class="video-thumbnail">
+  						<iframe width="280" height="210" src="http://www.youtube.com/embed/<?php echo $videoId?>?rel=0&autoplay=0" frameborder="0" allowfullscreen></iframe>
+  				</div>
+  				<div class="video-info" style="">
+  					<h5 class="video-title"><a href="<?php echo $this->getUrl('video', array('video_id'=>$videoId))?>" title="'<?php echo $videoTitle ?>'" ><span><?php echo $videoTitle; ?></span></a></h5>
+  					<label class="viewcount"><?php echo $this->__('Views: ')?><?php echo $viewCount; ?></label>
+  				</div>
+  			</li>
+  			</ul>
+  		
+  			<?php endforeach;?>
+  		</ul>
+  	</div>
+  <?php else:?>
+  	<p class="note-msg"><?php echo $this->__('There are no videos available at this time.') ?></p>
+  <?php endif ?>
+<?php endif ?>	

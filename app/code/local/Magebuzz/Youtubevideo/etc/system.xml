@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<config>
+  <tabs>
+    <magebuzz translate="label">
+      <label>Magebuzz Add-ons</label>
+      <sort_order>400</sort_order>
+    </magebuzz>
+  </tabs>
+  <sections>
+    <youtubevideo translate="label" module="youtubevideo">
+      <label>Youtube Video</label>
+      <tab>magebuzz</tab>
+      <frontend_type>text</frontend_type>
+      <sort_order>299</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+      <groups>     
+				<settings translate="label">
+          <label>API Settings</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>1</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>0</show_in_website>
+          <show_in_store>0</show_in_store>
+					<fields>
+						<api_key translate="label">
+              <label>API Key</label>
+							<comment><![CDATA[Get API Key from <a href="http://code.google.com/apis/console" target="_blank">http://code.google.com/apis/console</a>]]></comment>
+              <frontend_type>obscure</frontend_type>
+              <sort_order>1</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+            </api_key>
+					</fields>
+				</settings>
+        <display translate="label">
+          <label>Display Setting</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>3</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <heading translate="label">
+              <label>Heading</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>1</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </heading>
+            <show_on_homepage translate="label comment">
+              <label>Show video on home page</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>2</sort_order>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </show_on_homepage> 
+            
+            <sidebar_active translate="label comment">
+              <label>Show Youtube In Sidebar</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>3</sort_order>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </sidebar_active>
+            <sidebar_position>
+              <label>Display on Sidebar</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>4</sort_order>
+              <source_model>youtubevideo/system_config_source_sidebar_position</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_default>1</show_in_default>
+              <show_in_store>1</show_in_store>
+              <depends><sidebar_active>1</sidebar_active></depends>
+            </sidebar_position>  
+            
+            <featured_video translate="label comment"> 
+              <label>Show featured video</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>5</sort_order>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </featured_video>
+            <featured_heading translate="label">
+              <label>Featured video heading</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>6</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </featured_heading>
+            <video_per_row translate="label">
+              <label>Number of video per row</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>7</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </video_per_row>
+            <video_player_size translate="label">
+              <label>Video Player Size</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>8</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Example:480,320</comment>
+            </video_player_size>
+            <video_thumbnail_size translate="label">
+              <label>Video Thumbnail Size</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>9</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Example:120,70</comment>
+            </video_thumbnail_size>
+            <youtube_playlist_sidebar translate="label">
+              <label>Playlist Show in Sidebar</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>11</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+              <comment>
+                <![CDATA[Please input My Playlist id]]></comment>
+            </youtube_playlist_sidebar>
+            <show_on_product_page translate="label comment">
+              <label>Show video on product detail page</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>12</sort_order>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </show_on_product_page> 
+          </fields>
+        </display>
+      </groups>
+    </youtubevideo>
+  </sections>
+</config>

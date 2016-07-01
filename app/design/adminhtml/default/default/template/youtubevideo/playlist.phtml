@@ -1,0 +1,18 @@
+<div class="entry-edit">
+  <form id="youtubevideo_import_form" action="<?php echo $this->getUrl('*/*/videoFromPlaylist')?>" method="post">
+    <p><?php echo $this->__('Youtube playlist example')?> <span class="notice">http://www.youtube.com/playlist?list=<strong>demoplaylist</strong></span></p>
+    <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+    <fieldset id="import-videos">
+      <table cellspacing="5" class="form-list">
+        <tr>
+          <td class="label"><?=$this->__('Playlist ID')?> <span class="required">*</span></td>
+          <td class="input-ele"><input class="input-text required-entry" name="playlist_id" style="width:300px"/></td>
+          <td class="right"><button onclick="playlistImportForm.submit()" class="save" type="button"><span>Import from Playlist</span></button></td>
+        </tr>
+      </table>
+    </fieldset>
+  </form>
+</div>
+<script type="text/javascript">
+  var playlistImportForm = new varienForm('youtubevideo_import_form');
+</script>

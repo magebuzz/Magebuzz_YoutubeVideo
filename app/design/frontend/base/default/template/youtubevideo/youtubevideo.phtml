@@ -1,0 +1,86 @@
+<?php
+/*
+* Copyright (c) 2015 www.magebuzz.com 
+*/
+?>
+
+<?php
+	// $username = Mage::helper('youtubevideo')->getUserName();
+	$videoCollection = $this->getVideoCollection();	
+	$videoPlayerConfig = Mage::getStoreConfig('youtubevideo/display/video_player_size');
+	$videoThumbnailConfig = Mage::getStoreConfig('youtubevideo/display/video_thumbnail_size');
+    $videoApiKeyConfig = Mage::helper('youtubevideo')->getApiKey();
+	
+	/* Return array config size */
+	$videoPlayerSize = Mage::helper('youtubevideo')->getConfigVideoThumbnailSize($videoPlayerConfig);
+	$thumbnailSize = Mage::helper('youtubevideo')->getConfigVideoThumbnailSize($videoThumbnailConfig);
+	$main_video_id = $this->getMainVideoId();
+?>
+<?php if(count($videoCollection) > 0):?>	
+	<div id="videoPlayer" style="width:<?php echo $videoPlayerSize[0]?>px; height:<?php echo $videoPlayerSize[1]?>px">
+		<iframe width="<?php echo $videoPlayerSize[0]?>" height="<?php echo $videoPlayerSize[1]?>" src="http://www.youtube.com/embed/<?php echo $main_video_id?>?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<?php if(Mage::helper('youtubevideo')->showFeaturedVideo()):?>
+		<?php $featuredvideoCollection = $this->getFeaturedVideo();?>
+		<?php if(count($featuredvideoCollection) > 0):?>
+		<div id="featured-video">
+			<h3 class="featuredvideo_tit"><strong><span><?php echo Mage::getStoreConfig('youtubevideo/display/featured_heading');?></span></strong></h3>
+			<ul class="list-video">
+				<?php foreach($featuredvideoCollection as $_video):?>
+                    <?php
+                    $videoId = $_video->getVideoId();
+                    $viewsa = Mage::helper('youtubevideo')->countview($videoId,$videoApiKeyConfig);
+                    ?>
+				<li>
+					<div class="video-thumbnail">
+						<a href="<?php echo $this->getUrl('video', array('video_id'=>$_video->getVideoId()))?>" title="'<?php echo $_video->getVideoTitle() ?>'">
+							<img class="video-thumb" alt="<?php echo $_video->getVideoTitle() ?>" src="http://i.ytimg.com/vi/<?php echo $_video->getVideoId() ?>/mqdefault.jpg" width="<?php echo $thumbnailSize[0]?>" height="<?php echo $thumbnailSize[1]?>"  />
+						</a>
+					</div>
+					<div class="video-info" style="margin-left:<?php echo $thumbnailSize[0]+10?>px">
+						<h5 class="video-title"><a href="<?php echo $this->getUrl('video', array('video_id'=>$_video->getVideoId()))?>" title="'<?php echo $_video->getVideoTitle() ?>'"><span><?php echo $_video->getVideoTitle(); ?></span></a></h5>
+						<label class="viewcount"><?php echo $this->__('Views: ')?><?php echo $viewsa; ?></label>
+					</div>
+				</li>
+				<?php endforeach;?>
+			</ul>
+		</div>
+		<?php endif;?>
+	<?php endif;?>
+	<?php $_columnCount = Mage::helper('youtubevideo')->getVideoPerRow(); ?>
+	<div id="video-feed">
+			<h3 class="allvideo_tit"><strong><span><?php echo $this->__('All Videos')?></span></strong></h3>
+			<?php $i=0 ;?>
+			<?php foreach($videoCollection as $_video):?>
+			<?php if ($i++%$_columnCount==0): ?>
+				<ul class="list-video">
+			<?php endif ?>
+			<?php 
+				$videoId = $_video->getVideoId();
+				$videoTitle = $_video->getVideoTitle(); 
+				$videoDuration = $_video->getVideoDuration();   
+				$viewCount = $_video->getVideoViewCount();
+				$videoDurationMins = floor($videoDuration / 60);
+				$videoDurationSecs = $videoDuration % 60;
+                $viewsa = Mage::helper('youtubevideo')->countview($videoId,$videoApiKeyConfig);
+			?>
+			<li>
+				<div class="video-thumbnail">
+					<a href="<?php echo $this->getUrl('video', array('video_id'=>$videoId))?>" title="<?php echo $videoTitle ?>">
+						<img class="video-thumb" alt="<?php echo $videoTitle ?>" src="http://i.ytimg.com/vi/<?php echo $videoId ?>/mqdefault.jpg" width="<?php echo $thumbnailSize[0]?>" height="<?php echo $thumbnailSize[1]?>"  />
+					</a>
+				</div>
+				<div class="video-info" style="margin-left:<?php echo $thumbnailSize[0]+10?>px">
+					<h5 class="video-title"><a href="<?php echo $this->getUrl('video', array('video_id'=>$videoId))?>" title="'<?php echo $videoTitle ?>'" ><span><?php echo $videoTitle; ?></span></a></h5>
+					<label class="viewcount"><?php echo $this->__('Views: ')?><?php echo $viewsa; ?></label>
+				</div>
+			</li>
+			<?php if ($i%$_columnCount==0 || $i==count($videoCollection)): ?>
+			</ul>
+			<?php endif ?>
+			<?php endforeach;?>
+		</ul>
+	</div>
+<?php else:?>
+	<p class="note-msg"><?php echo $this->__('There are no videos available at this time. Please import from admin panel') ?></p>
+<?php endif ?>	

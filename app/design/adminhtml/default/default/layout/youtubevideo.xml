@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<layout version="0.1.1">
+    <adminhtml_youtubevideo_index>
+      <reference name="content">
+          <block type="youtubevideo/adminhtml_youtubevideo" name="youtubevideo" />
+      </reference>
+    </adminhtml_youtubevideo_index>
+
+    <adminhtml_youtubevideo_import>
+      <reference name="content">
+        <block type="youtubevideo/adminhtml_youtubevideo_import" name="youtubevideo_import"></block>
+      </reference>
+      <reference name="left">
+        <block type="youtubevideo/adminhtml_youtubevideo_import_tabs" name="youtubevideo_import_tabs">
+          <action method="addTab">
+            <name>import_from_playlist</name>
+            <block>youtubevideo/adminhtml_youtubevideo_import_tab_playlist</block>
+          </action>
+          <action method="addTab">
+            <name>import_from_user</name>
+            <block>youtubevideo/adminhtml_youtubevideo_import_tab_user</block>
+          </action>
+        </block>
+      </reference>
+    </adminhtml_youtubevideo_import>
+</layout>

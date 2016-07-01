@@ -1,0 +1,21 @@
+<?php
+/*
+* Copyright (c) 2015 www.magebuzz.com 
+*/
+?>
+
+<?php if(Mage::getStoreConfig('youtubevideo/display/show_on_homepage')):?>
+<?php
+	$videoPlayerConfig = Mage::getStoreConfig('youtubevideo/display/video_player_size');
+	
+	/* Return array config size */
+	$videoPlayerSize = Mage::helper('youtubevideo')->getConfigVideoThumbnailSize($videoPlayerConfig);
+	$home_video_id = $this->getHomeVideoId();
+	
+?>
+	<?php if($home_video_id):?>
+	<div id="homeVideoPlayer" style="width:<?php echo $videoPlayerSize[0]?>px; height:<?php echo $videoPlayerSize[1]?>px">
+		<iframe width="<?php echo $videoPlayerSize[0]?>" height="<?php echo $videoPlayerSize[1]?>" src="http://www.youtube.com/embed/<?php echo $home_video_id?>?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+	</div>
+	<?php endif; ?>
+<?php endif; ?>
